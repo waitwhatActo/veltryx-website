@@ -4,4 +4,4 @@
 
 This is the website of Veltryx
 
-Made with 💚🤍🩵💙 by Acto. Licensed under GPL 3.0.
+Made with 💚🤍🩵💙 by Acto with Veltryx. Licensed under GPL 3.0.
