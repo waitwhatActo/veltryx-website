@@ -1,0 +1,51 @@
+---
+import RootLayout from "./RootLayout.astro";
+const { frontmatter } = Astro.props;
+const { title, date, banner, readingTime = 1 } = frontmatter;
+---
+
+<RootLayout title={title}>
+    <article class="max-w-3xl mx-auto text-neutral-100 space-y-6">
+        {
+            banner && (
+                <div class="w-full h-64 overflow-hidden rounded-lg">
+                    <img
+                        src={banner}
+                        alt="Banner image"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            )
+        }
+
+        <header class="space-y-2">
+            <h1 class="text-4xl md:text-5xl font-bold text-indigo-400">
+                {title}
+            </h1>
+
+            <div
+                class="flex flex-wrap items-center gap-2 text-neutral-500 text-sm"
+            >
+                <span>by Acto</span>
+                <span>•</span>
+                <span>{date}</span>
+                <span>•</span>
+                <span>{readingTime} min read</span>
+            </div>
+        </header>
+
+        <section class="prose prose-invert max-w-full">
+            <slot />
+        </section>
+
+        <!-- Back link -->
+        <div class="mt-8">
+            <a
+                href="/blog"
+                class="text-indigo-400 hover:text-indigo-300 font-medium"
+            >
+                ← Back to Blog
+            </a>
+        </div>
+    </article>
+</RootLayout>
