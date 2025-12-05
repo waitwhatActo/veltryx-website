@@ -1,21 +1,95 @@
+---
+const quicklinks = [
+    { name: "Service Status", href: "https://status.veltryx.xyz" },
+];
+
+const navlinks = [
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
+];
+---
+
 <nav class="w-full py-4 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur">
-    <div class="max-w-5xl mx-auto flex justify-between items-center">
+    <div class="max-w-5xl mx-auto flex justify-between items-center px-4">
         <div class="flex items-center gap-4">
-          <a href="/" class="flex items-center gap-2">
-            <img src="/logo.png" alt="Veltryx Favicon" class="h-12 w-auto transform transition-transform duration-500 hover:scale-115" />
-            <span class="sr-only">Veltryx</span>
-          </a>
-          <a href="https://acto.veltryx.xyz" class="flex items-center gap-2">
-            <img src="/acto.png" alt="Acto" class="h-12 w-auto transform transition-transform duration-500 hover:scale-115" />
-            <span class="sr-only">Acto</span>
-          </a>
+            <a href="/" class="flex items-center gap-2">
+                <img src="/logo.png" class="h-12 w-auto hover:scale-110 transition" />
+            </a>
+            <a href="https://acto.veltryx.xyz" class="flex items-center gap-2">
+                <img src="/acto.png" class="h-12 w-auto hover:scale-110 transition" />
+            </a>
         </div>
 
-        <div class="flex gap-6 text-neutral-400 mr-4">
-            <a href="/about" class="hover:text-white">About</a>
-            <a href="/projects" class="hover:text-white">Projects</a>
-            <a href="/blog" class="hover:text-white">Blog</a>
-            <a href="/contact" class="hover:text-white">Contact</a>
+        <div class="hidden md:flex gap-6 text-neutral-400 items-center">
+            {
+                navlinks.map((q) => (
+                    <a href={q.href} class="hover:text-white">{q.name}</a>
+                ))
+            }
+
+            <div class="relative group">
+                <button class="hover:text-white flex items-center gap-1">
+                    Quicklinks
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <div id="quicklinks-menu" class="absolute right-0 mt-2 w-40 bg-neutral-900 border border-neutral-700 rounded shadow-xl py-2 hidden group-hover:block">
+                    {
+                        quicklinks.map((q) => (
+                            <a href={q.href} class="block px-4 py-2 text-neutral-300 hover:bg-neutral-800 hover:text-white">{q.name}</a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        <button data-toggle="mobile" class="md:hidden text-neutral-300 hover:text-white">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden px-4 py-3 border-t border-neutral-800 space-y-2 text-neutral-400">
+        {
+            navlinks.map((q) => (
+                <a href={q.href} class="block hover:text-white">{q.name}</a>
+            ))
+        }
+
+        <div>
+            <button data-toggle="mobile-quicklinks" class="w-full text-left hover:text-white flex items-center justify-between">
+                Quicklinks
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+
+            <div id="mobile-quicklinks-menu" class="hidden pl-4 mt-2 space-y-1">
+                {
+                    quicklinks.map((q) => (
+                        <a href={q.href} class="block py-1 text-neutral-400 hover:text-white">{q.name}</a>
+                    ))
+                }
+            </div>
         </div>
     </div>
 </nav>
+
+<script>
+    document.querySelector('[data-toggle="quicklinks"]')?.addEventListener("click", () => {
+            document.querySelector("#quicklinks-menu")?.classList.toggle("hidden");
+        });
+
+    document.querySelector('[data-toggle="mobile"]')?.addEventListener("click", () => {
+            document.querySelector("#mobile-menu")?.classList.toggle("hidden");
+        });
+
+    document.querySelector('[data-toggle="mobile-quicklinks"]')?.addEventListener("click", () => {
+            document.querySelector("#mobile-quicklinks-menu")?.classList.toggle("hidden");
+        });
+</script>
