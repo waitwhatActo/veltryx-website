@@ -1,0 +1,25 @@
+---
+const { title = "Veltryx" } = Astro.props;
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+---
+
+<html lang="en" class="bg-neutral-950 text-neutral-100">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <link rel="icon" href="/favicon.png" />
+    </head>
+
+    <body class="min-h-screen flex flex-col font-sans">
+        <Navbar />
+
+        <main class="flex-1 px-6 md:px-12 lg:px-20 py-12">
+            <slot />
+        </main>
+
+        <Footer />
+    </body>
+</html>
