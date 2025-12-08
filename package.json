@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "veltryx-website",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -22,5 +22,17 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
-  }
+  },
+  "description": "This is the website of Veltryx",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waitwhatActo/veltryx-website.git"
+  },
+  "author": "Acto",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/waitwhatActo/veltryx-website/issues"
+  },
+  "homepage": "https://github.com/waitwhatActo/veltryx-website#readme"
 }
