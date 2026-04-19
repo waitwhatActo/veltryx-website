@@ -1,9 +1,18 @@
 ---
 import RootLayout from "../../layouts/RootLayout.astro";
 
-const posts = await Astro.glob("./*.mdx");
+const postModules = import.meta.glob("./*.mdx", { eager: true });
 
-posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime(),);
+const posts = Object.entries(postModules).map(([path, mod]) => ({
+    url: path.replace(/^\.\//, "/blog/").replace(/\.mdx$/, ""),
+    frontmatter: mod.frontmatter,
+}));
+
+posts.sort(
+    (a, b) =>
+        new Date(b.frontmatter.date).getTime() -
+        new Date(a.frontmatter.date).getTime(),
+);
 ---
 
 <RootLayout title="Blog">
@@ -14,9 +23,16 @@ posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontma
             {
                 posts.map((post) => (
                     <li class="border border-neutral-800 p-4 rounded hover:border-indigo-400 transition">
-                        <a href={post.url} class="flex justify-between items-center">
-                            <span class="font-semibold text-neutral-100 hover:text-indigo-300">{post.frontmatter.title}</span>
-                            <span class="text-neutral-500 text-sm">{post.frontmatter.date}</span>
+                        <a
+                            href={post.url}
+                            class="flex justify-between items-center"
+                        >
+                            <span class="font-semibold text-neutral-100 hover:text-indigo-300">
+                                {post.frontmatter.title}
+                            </span>
+                            <span class="text-neutral-500 text-sm">
+                                {post.frontmatter.date}
+                            </span>
                         </a>
                     </li>
                 ))
