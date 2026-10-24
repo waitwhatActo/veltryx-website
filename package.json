@@ -11,14 +11,14 @@
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",
     "@astrojs/react": "^5.0.5",
-    "@tailwindcss/vite": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "astro": "^6.3.8",
     "flowbite": "^4.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
