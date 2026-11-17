@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import RootLayout from "./RootLayout.astro";
 const { frontmatter } = Astro.props;
 const { title, date, banner, readingTime = 1 } = frontmatter;
@@ -9,11 +10,7 @@ const { title, date, banner, readingTime = 1 } = frontmatter;
         {
             banner && (
                 <div class="w-full h-64 overflow-hidden rounded-lg">
-                    <img
-                        src={banner}
-                        alt="Banner image"
-                        class="w-full h-full object-cover"
-                    />
+                    <Image src={banner} alt="Banner image" class="w-full h-full object-cover" />
                 </div>
             )
         }

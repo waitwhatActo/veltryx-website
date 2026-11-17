@@ -1,11 +1,13 @@
 ---
+import { Image } from "astro:assets";
 import RootLayout from "../layouts/RootLayout.astro";
+import banner from "../assets/banner_no_outline.webp";
 ---
 
 <RootLayout title="Veltryx">
     <div class="max-w-3xl md:w-3xl mx-auto text-center">
         <div class="mb-10 flex justify-center gap-4">
-            <img src="/banner_no_outline.webp" alt="Veltryx Banner" class="w-lg" />
+            <Image src={banner} alt="Veltryx Banner" class="w-lg" />
         </div>
         <div class="justify-center">
             <h1 class="text-4xl md:text-5xl font-semibold text-neutral-100 pb-4">Welcome to Veltryx.</h1>
