@@ -1,0 +1,41 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/**'
+      - 'dist/**'
+      - '.gitignore'
+      - 'README.md'
+      - 'LICENSE'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tailwind.config.mjs'
+      - 'tsconfig.json'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          clean: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy with Docker Compose
+        run: |
+          docker compose down
+          docker compose pull
+          docker compose up -d --force-recreate --remove-orphans website
+
+      - name: Prune old images
+        run: docker image prune -f
