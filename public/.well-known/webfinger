@@ -1,9 +1,0 @@
-{
-    "subject": "acct:webmaster@veltryx.xyz",
-    "links": [
-        {
-            "href": "https://login.veltryx.xyz/application/o/veltryx-tailscale/",
-            "rel": "http://openid.net/specs/connect/1.0/issuer"
-        }
-    ]
-}
